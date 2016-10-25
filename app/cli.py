@@ -19,7 +19,7 @@ def _get_eureka_url():
     eureka_host = os.environ.get('EUREKA_HOST')
 
     if not eureka_host:
-        raise Exception("You must EUREKA_HOST environment variable")
+        raise Exception("You must define EUREKA_HOST environment variable")
 
     return "http://{}/eureka-server/v2/apps".format(eureka_host)
 
