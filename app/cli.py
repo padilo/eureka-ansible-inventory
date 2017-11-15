@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 #  -*- coding: utf-8 -*-
+from __future__ import print_function
+
 import json
 import os
-import shutil
+import sys
+import traceback
 from itertools import chain, imap, ifilter
 
 import click
-import sys
 import unirest
-import stat
 
 
 def iflatmap(f, items):
@@ -26,8 +27,8 @@ def _get_eureka_url():
 
 def _request_eureka_inventory():
     url = _get_eureka_url()
-    response = unirest.get(url,
-                           headers={"Accept": "application/json"})
+
+    response = unirest.get(url, headers={"Accept": "application/json"})
 
     return response.body["applications"]["application"]
 
@@ -99,8 +100,10 @@ def run_cli(ctx, list, host):
             _host_cli(host)
         else:
             print(ctx.get_help())
+
     except Exception as ex:
-        sys.stderr.write(ex.message)
+        traceback.print_exc(file=sys.stderr)
+        print("Trying to request at {}".format(_get_eureka_url()), file=sys.stderr)
         exit(-1)
 
 
