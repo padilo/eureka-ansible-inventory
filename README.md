@@ -1,10 +1,10 @@
 # eureka-ansible-inventory
 
-Creates an ansible inventory base on Eureka registered hosts
+Creates an ansible inventory base on Eureka registered hosts.
 
 # How to install
 
-Just install using
+Just install using:
 ```
 pip install git+ssh://git@github.com/padilo/eureka-ansible-inventory.git
 ```
